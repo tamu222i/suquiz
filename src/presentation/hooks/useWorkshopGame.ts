@@ -1,6 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import { WorkshopGameController } from '../state/WorkshopGameController'
 import type { WorkshopGameState } from '../state/WorkshopGameController'
+import type { Mold } from '../../domain/squishy/model/CraftMaterials'
+import type { Squishy } from '../../domain/squishy/model/Squishy'
+import type { SecretRecipe } from '../../domain/squishy/model/SecretRecipes'
 
 export function useWorkshopGame() {
   const controller = useMemo(() => new WorkshopGameController(), [])
@@ -25,7 +28,14 @@ export function useWorkshopGame() {
     toggleDecoration: (id: string) => controller.toggleDecoration(id),
     finishCrafting: (name: string) => controller.finishCrafting(name),
     deliverActiveSquishy: (orderId: string) => controller.deliverActiveSquishy(orderId),
-    unlockMold: (mold: any) => controller.unlockMold(mold),
-    setActiveSquishy: (squishy: any) => controller.setActiveSquishy(squishy),
+    unlockMold: (mold: Mold) => controller.unlockMold(mold),
+    setActiveSquishy: (squishy: Squishy) => controller.setActiveSquishy(squishy),
+    saveActiveSquishyToShowroom: () => controller.saveActiveSquishyToShowroom(),
+    isCurrentSquishyInShowroom: () => controller.isCurrentSquishyInShowroom(),
+    removeSquishyFromShowroom: (squishyId: string) => controller.removeSquishyFromShowroom(squishyId),
+    renameSquishyInShowroom: (squishyId: string, newName: string) => controller.renameSquishyInShowroom(squishyId, newName),
+    requestNewCustomerOrder: () => controller.requestNewCustomerOrder(),
+    applySecretRecipePreset: (recipe: SecretRecipe) => controller.applySecretRecipePreset(recipe),
+    dismissNewlyDiscovered: () => controller.dismissNewlyDiscovered(),
   }
 }
