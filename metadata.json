@@ -1,0 +1,6 @@
+{
+  "name": "ふわもちスクイーズ工房",
+  "description": "手作りスクイーズのクラフト＆触感体験シミュレーター。多彩な素材の組み合わせ、特別なモチーフ、ショールーム保存に対応。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
