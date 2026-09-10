@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import type { Squishy } from '../../domain/squishy/model/Squishy'
 import type { IAsmrSoundPlayer } from '../../infrastructure/sound/WebAudioAsmrPlayer'
 import { calculateSquishDeformationProgress } from './squishyPhysics'
+import { CharacterMoldSvg } from './squishy/CharacterMoldSvg'
+import { CharacterPropsSvg } from './squishy/CharacterPropsSvg'
 
 interface SquishyToyProps {
   squishy: Squishy
@@ -62,7 +64,27 @@ export const SquishyToy: React.FC<SquishyToyProps> = ({
           particleText = recipe.id === 'chiikawa_teary' ? '🥺' : recipe.id === 'chiikawa_hachiware' ? '✨' : '⭐'
         } else if (recipe?.category === 'sumikko') {
           particleText = recipe.id === 'sumikko_ebifurai' ? '🍤' : recipe.id === 'sumikko_tokage' ? '🦕' : '🐻‍❄️'
-        } else if (soundType === 'crunch_beads') particleText = '🥣'
+        } else if (recipe?.category === 'ghibli') {
+          particleText = recipe.id === 'ghibli_calcifer' ? '🔥' : recipe.id === 'ghibli_kaonashi' ? '🪙' : recipe.id === 'ghibli_kurosuke' ? '🖤' : recipe.id === 'ghibli_catbus' ? '🚌' : '🍃'
+        } else if (recipe?.category === 'disney_princess') {
+          particleText = recipe.id === 'princess_cinderella' ? '👠' : recipe.id === 'princess_belle' ? '🌹' : recipe.id === 'princess_ariel' ? '🧜‍♀️' : recipe.id === 'princess_elsa' ? '❄️' : '🌸'
+        } else if (recipe?.category === 'precure') {
+          particleText = recipe.id === 'precure_fairy' ? '🐰' : recipe.id === 'precure_ribbon' ? '🎀' : '💖'
+        } else if (recipe?.category === 'paw_patrol') {
+          particleText = recipe.id === 'paw_marshall' ? '🚒' : recipe.id === 'paw_skye' ? '🛩️' : '🐾'
+        } else if (recipe?.category === 'mario') {
+          particleText = recipe.id === 'mario_mushroom' ? '🍄' : recipe.id === 'mario_star' ? '⭐' : recipe.id === 'mario_block' ? '❓' : '🧢'
+        } else if (soundType === 'coin_1up') particleText = '🪙'
+        else if (soundType === 'magic_wand') particleText = '🪄'
+        else if (soundType === 'forest_rustle') particleText = '🍃'
+        else if (soundType === 'puppy_bark') particleText = '🐕'
+        else if (soundType === 'fire_crackle') particleText = '🔥'
+        else if (soundType === 'bubble_pop') particleText = '🫧'
+        else if (soundType === 'ice_sparkle') particleText = '❄️'
+        else if (soundType === 'ocean_wave') particleText = '🌊'
+        else if (soundType === 'music_box') particleText = '🎵'
+        else if (soundType === 'suction_pop') particleText = '🎈'
+        else if (soundType === 'crunch_beads') particleText = '🥣'
         else if (soundType === 'popping_candy') particleText = '💥'
         else if (soundType === 'air_slow') particleText = '💨'
         else if (soundType === 'slime_gel') particleText = '💧'
@@ -270,6 +292,14 @@ export const SquishyToy: React.FC<SquishyToyProps> = ({
               <stop offset="100%" stopColor="#000000" stopOpacity="0" />
             </radialGradient>
           </defs>
+
+          {/* New Character Molds (Ghibli, Disney Princess, Precure, PAW Patrol, Mario) */}
+          <CharacterMoldSvg
+            moldId={moldId}
+            gradId={gradId}
+            deformation={deformation}
+            baseColor={baseColor}
+          />
 
           {/* 1. MOLD: 鬼滅風 市松模様のおにぎりパン (Demon Slayer Tanjiro) */}
           {moldId === 'ichimatsu_onigiri' ? (
@@ -609,6 +639,8 @@ export const SquishyToy: React.FC<SquishyToyProps> = ({
                 <ellipse key={idx} cx={sx} cy={sy} rx="3" ry="5" fill="#fef08a" opacity="0.9" />
               ))}
             </g>
+          ) : moldId.startsWith('ghibli_') || moldId.startsWith('princess_') || moldId.startsWith('precure_') || moldId.startsWith('paw_') || moldId.startsWith('mario_') ? (
+            null
           ) : (
             // Default: Melon Pan (メロンパン)
             <g>
@@ -656,6 +688,9 @@ export const SquishyToy: React.FC<SquishyToyProps> = ({
               <ellipse cx="145" cy="115" rx="10" ry="6" fill="#fda4af" opacity="0.8" />
             </g>
           )}
+
+          {/* Character Props & Toppings */}
+          <CharacterPropsSvg decorations={squishy.decorations} moldId={moldId} />
 
           {/* Sauce Layer */}
           {sauceDeco && (

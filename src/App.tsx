@@ -23,7 +23,9 @@ export function App() {
   const [saveFlashMessage, setSaveFlashMessage] = useState<string | null>(null)
   const [editingSquishyId, setEditingSquishyId] = useState<string | null>(null)
   const [renameInputValue, setRenameInputValue] = useState('')
-  const [recipeCategoryFilter, setRecipeCategoryFilter] = useState<'all' | 'kimetsu' | 'sumikko' | 'chiikawa'>('all')
+  const [recipeCategoryFilter, setRecipeCategoryFilter] = useState<
+    'all' | 'kimetsu' | 'sumikko' | 'chiikawa' | 'ghibli' | 'disney_princess' | 'precure' | 'paw_patrol' | 'mario'
+  >('all')
   const [gridMode, setGridMode] = useState<'grid' | 'list'>('grid')
 
   // Handle touch unlock for mobile browsers
@@ -128,6 +130,26 @@ export function App() {
         return '🔔 鈴チャーム（チリンチリン癒やし音）'
       case 'cat_purr':
         return '🐾 猫ゴロゴロ（心地よい低周波ゴロゴロ音）'
+      case 'coin_1up':
+        return '🪙 コイン1UP音（ピロロ〜ン♪と元気に跳ねる音）'
+      case 'magic_wand':
+        return '🪄 魔法のステッキ音（シャララ〜ンときらめく魔法音）'
+      case 'forest_rustle':
+        return '🍃 森のささやき（ざわざわと木々が揺れる癒やしの音）'
+      case 'puppy_bark':
+        return '🐕 子犬のキャンキャン（ワンッ！と元気に鳴く子犬の声）'
+      case 'fire_crackle':
+        return '🔥 暖炉のパチパチ薪（パチパチ薪がはぜる温かい音）'
+      case 'bubble_pop':
+        return '🫧 シャボン玉パチパチ（ポコポコ軽快に弾ける泡の音）'
+      case 'ice_sparkle':
+        return '❄️ 氷のきらめき（チリンチリンと透き通る結晶の音）'
+      case 'ocean_wave':
+        return '🌊 さざなみの音（ざざ〜んと心地よい海の音）'
+      case 'music_box':
+        return '🎵 オルゴール音（オルゴールが奏でる夢心地の音）'
+      case 'suction_pop':
+        return '🎈 ぽこぽこ吸盤ポップ（ポンッ！と抜ける爽快なポップ音）'
       default:
         return '無音'
     }
@@ -355,10 +377,10 @@ export function App() {
               <div>
                 <h2 className="panel-title" style={{ margin: 0 }}>
                   <span>🧪</span>
-                  <span>スクイーズ調合台（10×10×10 素材マトリクス）</span>
+                  <span>スクイーズ調合台（30×30 素材マトリクス）</span>
                 </h2>
                 <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
-                  主剤10種 × ASMRフィリング10種 × モールド11種 × 装飾12種以上から自由に調合！
+                  主剤30種 × ASMRフィリング30種 × モールド32種 × 装飾60種から自由に調合！
                 </div>
               </div>
 
@@ -368,15 +390,15 @@ export function App() {
                   onClick={() => setGridMode(gridMode === 'grid' ? 'list' : 'grid')}
                   style={{ padding: '6px 12px', fontSize: 12 }}
                 >
-                  {gridMode === 'grid' ? '📋 リスト表示' : '🔲 グリッド表示 (10x10)'}
+                  {gridMode === 'grid' ? '📋 リスト表示' : '🔲 グリッド表示 (30x30)'}
                 </button>
 
                 <div style={{ display: 'flex', gap: 6 }}>
                   {[
-                    { step: 1, label: '1.主剤' },
-                    { step: 2, label: '2.音素材' },
-                    { step: 3, label: '3.型' },
-                    { step: 4, label: '4.仕上げ' },
+                    { step: 1, label: '1.主剤(30)' },
+                    { step: 2, label: '2.音素材(30)' },
+                    { step: 3, label: '3.型(32)' },
+                    { step: 4, label: '4.仕上げ(60)' },
                   ].map((s) => (
                     <button
                       key={s.step}
@@ -441,11 +463,11 @@ export function App() {
               </div>
             </div>
 
-            {/* STEP 1: BASE MATERIAL (10 TYPES) */}
+            {/* STEP 1: BASE MATERIAL (30 TYPES) */}
             {activeStep === 1 && (
               <div>
                 <h3 style={{ fontSize: 16, marginBottom: 4, color: 'var(--primary)' }}>
-                  ステップ 1: ベースウレタン主剤の選択（全10種）
+                  ステップ 1: ベースウレタン主剤の選択（全30種）
                 </h3>
                 <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
                   柔らかさ・低反発の復元遅延・弾性を決定する核となるベース素材です。
@@ -474,17 +496,17 @@ export function App() {
 
                 <div style={{ marginTop: 24, textAlign: 'right' }}>
                   <button className="btn-primary" onClick={() => setActiveStep(2)}>
-                    <span>次へ: サウンド素材選択（10種）🔊</span>
+                    <span>次へ: サウンド素材選択（30種）🔊</span>
                   </button>
                 </div>
               </div>
             )}
 
-            {/* STEP 2: SOUND FILLINGS (10 ASMR SOUND TYPES) */}
+            {/* STEP 2: SOUND FILLINGS (30 ASMR SOUND TYPES) */}
             {activeStep === 2 && (
               <div>
                 <h3 style={{ fontSize: 16, marginBottom: 4, color: 'var(--primary)' }}>
-                  ステップ 2: ASMRサウンド特殊フィリング配合（全10種）🔊
+                  ステップ 2: ASMRサウンド特殊フィリング配合（全30種）🔊
                 </h3>
                 <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
                   スクイーズを押した瞬間に響く特殊ビーズ・炭酸パウダー・鈴チャーム等を配合します！
@@ -546,14 +568,14 @@ export function App() {
               </div>
             )}
 
-            {/* STEP 3: MOLD SELECTION (10+ TYPES INCL. THEMED MOLDS) */}
+            {/* STEP 3: MOLD SELECTION (32 TYPES INCL. THEMED MOLDS) */}
             {activeStep === 3 && (
               <div>
                 <h3 style={{ fontSize: 16, marginBottom: 4, color: 'var(--primary)' }}>
-                  ステップ 3: 成形モールド型の選択（全11種）
+                  ステップ 3: 成形モールド型の選択（全32種）
                 </h3>
                 <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
-                  鬼滅風・すみっコ風・ちいかわ風や定番パンケーキなど、好きな形を選んで流し込みます。
+                  ジブリ・プリンセス・プリキュア・パウパト・マリオや鬼滅・すみっコ・ちいかわ風など、好きな形を選んで流し込みます。
                 </p>
 
                 <div className={gridMode === 'grid' ? 'material-grid-10' : 'selection-list'}>
@@ -600,10 +622,10 @@ export function App() {
             {activeStep === 4 && (
               <div>
                 <h3 style={{ fontSize: 16, marginBottom: 4, color: 'var(--primary)' }}>
-                  ステップ 4: デコレーション・特別パーツ・命名（全12種以上）
+                  ステップ 4: デコレーション・特別パーツ・命名（全60種）
                 </h3>
                 <p style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 16 }}>
-                  竹筒マズルや風呂敷包み、うるうる涙、ソースやラメを自由にトッピング！
+                  ジブリ葉っぱや王冠ティアラ、キュアジュエル、パウパト帽子、マリオヒゲなど多彩なトッピング！
                 </p>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 10, marginBottom: 24 }}>
@@ -985,14 +1007,19 @@ export function App() {
                   <span>ひみつのレシピ手帳 ＆ 工房ショップ</span>
                 </h2>
                 <p style={{ color: 'var(--text-muted)', margin: '4px 0 0', fontSize: 13 }}>
-                  鬼滅・すみっコ・ちいかわ風スクイーズの配合レシピ。組み合わせると特別なスクイーズが誕生！
+                  ジブリ・プリンセス・プリキュア・パウパト・マリオ・鬼滅・すみっコ・ちいかわ風スクイーズの配合レシピ！
                 </p>
               </div>
 
               {/* Filter Tabs */}
-              <div style={{ display: 'flex', gap: 6 }}>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 {[
                   { id: 'all', label: 'すべて' },
+                  { id: 'ghibli', label: '🌲 ジブリ' },
+                  { id: 'disney_princess', label: '👑 プリンセス' },
+                  { id: 'precure', label: '💖 プリキュア' },
+                  { id: 'paw_patrol', label: '🐾 パウパト' },
+                  { id: 'mario', label: '🍄 マリオ' },
                   { id: 'kimetsu', label: '🔥 鬼滅風' },
                   { id: 'sumikko', label: '🐻‍❄️ すみっコ風' },
                   { id: 'chiikawa', label: '🥺 ちいかわ風' },

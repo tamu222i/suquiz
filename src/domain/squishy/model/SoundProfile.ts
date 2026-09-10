@@ -10,6 +10,16 @@ export type SoundType =
   | 'caramel_crust'  // カラメルクラスト（パリッ・サクッと表面割れ音）
   | 'bell_charm'     // 癒しの鈴（チリンチリンと透き通る鈴音）
   | 'cat_purr'       // 猫の喉鳴り（ゴロゴロ…と響く安らぎ低周波音）
+  | 'coin_1up'       // コイン・1UPチャリン音（マリオ風）
+  | 'magic_wand'     // 魔法のステッキ星屑チャイム（プリンセス＆プリキュア風）
+  | 'forest_rustle'  // どんぐりコトコト・森の葉音（ジブリ風）
+  | 'puppy_bark'     // パウパウわんこ鳴き笛（パウパト風）
+  | 'fire_crackle'   // パチパチ焚き火（カルシファー風）
+  | 'bubble_pop'     // プチプチ気泡弾け音
+  | 'ice_sparkle'    // 氷雪スノークリスタル音（エルサ風）
+  | 'ocean_wave'     // 潮騒波音シェル（アリエル風）
+  | 'music_box'      // 星屑オルゴール音
+  | 'suction_pop'    // もちもち吸盤パコッ音
 
 export interface SoundProfileProps {
   soundType: SoundType

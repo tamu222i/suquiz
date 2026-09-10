@@ -1,5 +1,5 @@
 import { Coin } from './Coin'
-import type { Mold } from '../../squishy/model/CraftMaterials'
+import { BASE_MATERIALS, SOUND_FILLINGS, type Mold } from '../../squishy/model/CraftMaterials'
 import type { Squishy } from '../../squishy/model/Squishy'
 
 export interface WorkshopProps {
@@ -83,33 +83,11 @@ export class Workshop {
   static createInitial(): Workshop {
     return new Workshop({
       coins: new Coin(100),
-      // All 10 materials unlocked by default for rich 10x10 exploration!
-      unlockedMaterialIds: new Set([
-        'memory_foam',
-        'silicone_gel',
-        'clay_sponge',
-        'marshmallow_sponge',
-        'water_gel',
-        'tapioca_polymer',
-        'raw_caramel_rubber',
-        'custard_mousse',
-        'tofu_foam',
-        'crystal_resin',
-      ]),
-      // All 10 fillings unlocked by default!
-      unlockedFillingIds: new Set([
-        'air_slow_valve',
-        'crunch_beads',
-        'popping_candy',
-        'slime_core',
-        'squeaker_whistle',
-        'carbonated_soda',
-        'mochi_core',
-        'caramel_crust',
-        'bell_charm',
-        'cat_purr_vibe',
-      ]),
-      // Standard and themed starter molds unlocked (shiba_toast and strawberry unlockable in shop)
+      // All 30 materials unlocked by default for rich 30x30 exploration!
+      unlockedMaterialIds: new Set(BASE_MATERIALS.map(m => m.id)),
+      // All 30 fillings unlocked by default!
+      unlockedFillingIds: new Set(SOUND_FILLINGS.map(f => f.id)),
+      // Standard and themed starter molds unlocked
       unlockedMoldIds: new Set([
         'melon_pan',
         'cat_bun',
@@ -123,6 +101,17 @@ export class Workshop {
         'hachiware_cat',
         'usagi_rabbit',
         'fluffy_donut',
+        // Ghibli starters
+        'ghibli_totoro',
+        'ghibli_kurosuke',
+        // Disney Princess starter
+        'princess_cinderella',
+        // Precure starter
+        'precure_heart',
+        // PAW Patrol starter
+        'paw_chase',
+        // Mario starter
+        'mario_mushroom',
       ]),
       showroom: [],
       experience: 0,
